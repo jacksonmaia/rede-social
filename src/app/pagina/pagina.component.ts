@@ -16,8 +16,10 @@ export class PaginaComponent implements OnInit {
 
   adicionar(post: Post){
     console.log(post);
-    
-    this.postservice.adicionarPost(post);
+    this.postservice.adicionarPost(post)
+    .subscribe((data)=>{console.log(data)},
+    error => console.log(error));
+  
   }
 
 }

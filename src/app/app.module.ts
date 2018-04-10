@@ -26,7 +26,12 @@ import { InputPostComponent } from './post/InputPost.component';
     HttpModule,
     routing
   ],
-  providers: [PostService],
-  bootstrap: [AppComponent],
+  providers: [
+    PostService,
+    
+  ],
+  bootstrap: [
+    AppComponent
+  ],
 })
 export class AppModule { }

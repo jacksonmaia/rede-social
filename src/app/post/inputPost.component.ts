@@ -7,7 +7,7 @@ import { PostService } from "./post.service";
   templateUrl: './inputPost.component.html'
 })
 export class InputPostComponent implements OnInit {
-    id:number;
+    id:string = "";
     nome:string = "";
     legenda:string = "";
     @Output() postar = new  EventEmitter();
@@ -21,9 +21,8 @@ export class InputPostComponent implements OnInit {
     submeter(event){
         event.preventDefault();
         let posts = this.postservice.getPosts();
-        let contador = posts.length;        
-        let id = contador + 1; 
-        let postagem:Post = new Post(id,this.nome, this.legenda,0);        
+        let postagem:Post = new Post(this.id,this.nome, this.legenda,0); 
+        console.log(postagem);
         this.postar.emit(postagem);
     }
 }

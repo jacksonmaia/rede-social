@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Post } from './post.model';
 import { PostService } from "./post.service";
+
 
 @Component({
   selector: 'app-post',
@@ -15,6 +16,7 @@ export class PostComponent implements OnInit {
   Botaoexcluir:String = "../../assets/img/excluir.png";
   Botaocurtir:String = "../../assets/img/curtir.png";
 
+  @Output() apagar = new  EventEmitter();
 
   constructor(private postservice:PostService) {
 
@@ -23,12 +25,15 @@ export class PostComponent implements OnInit {
   ngOnInit() {
   }
   
-  curtir(post:Post): void{
-    this.postservice.adicionarLike(post);
+  curtir(post:Post){
+    this.postservice.adicionarLike(post)
+    .subscribe((data)=>{console.log(data)},
+    error => console.log(error));
+
   }
   
-  apagar(id:number): void{
-    this.postservice.excluirPost(id);
+  apagarPost(post: Post){
+    this.apagar.emit(post);
   }
   
 

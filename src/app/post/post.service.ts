@@ -1,30 +1,47 @@
-import { Injectable } from '@angular/core';
 import { Post } from './post.model';
+import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 @Injectable()
 export class PostService{
-    posts: Post[] = [
-        new Post(0, "Jackson", "Tão natural quanto luz do dia", 0),
-        new Post(1, "Pereira", "PoucaZideia", 0),
-        new Post(2, "Jordão", "Aiin pai para", 0),
-        new Post(3, "DjBlack", "pen drive do sucesso", 0),
-        ];
+    private url: string = 'http://rest.learncode.academy/api/jacksonmaias/post';
 
-    adicionarPost(post:Post): void{
-        this.posts.push(post);
-    }
-    excluirPost(id: number): void{
-        this.posts.forEach(element => {
-            if(element.id == id){
-                this.posts.splice(this.posts.indexOf(this.posts[element.id]), 1);
-            }
-         });
 
-    }
-    adicionarLike(post: Post):void{
-        post.qtdLikes++;
-    }
+    constructor(private http: Http){
+
+    }   
+ 
+    posts: Post[] = [];
+
     getPosts(){
-        return this.posts;
+        return this.http.get(this.url)
+                .map((response: Response) => {
+                    for(let p of response.json()){
+                        this.posts.push(new Post(p.id, p.nome, p.legenda, p.qtdLikes))
+                    }
+                    return this.posts;
+                })
+                .catch((error: Response) => Observable.throw(error))
+    }
+    excluirPost(id: number){
+        return this.http.delete(this.url + '/' + id)
+        .map((response:Response) => response.json() )
+        .catch((error: Response) => Observable.throw(error));
+    }
+    adicionarPost(postagem:Post){
+//        this.posts.push(postagem);
+        return this.http.post(this.url, postagem)
+        .map((response:Response) => response.json() )
+        .catch((error: Response) => Observable.throw(error));
+    }
+    adicionarLike(postagem: Post){
+        postagem.qtdLikes++;
+        return this.http.put(this.url + '/' + postagem.id, postagem)
+        .map((res: Response) => res.text())
+        .catch((error: Response) => Observable.throw(error));
     }
 }
 

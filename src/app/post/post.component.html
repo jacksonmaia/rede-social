@@ -6,7 +6,7 @@
     <p class="card-text">{{post.legenda}}</p>
     <a (click) = "curtir(post)"><img [src]="Botaocurtir" style="width: 40px;cursor:pointer;"></a>
     <span>{{post.qtdLikes}}</span>
-    <a (click) = "apagar(post.id)"><img [src]="Botaoexcluir" style="width: 40px;float: right;cursor:pointer;"></a>
+    <a (click) = "apagarPost(post)"><img [src]="Botaoexcluir" style="width: 40px;float: right;cursor:pointer;"></a>
   
   </div>
 </div>

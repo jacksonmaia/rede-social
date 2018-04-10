@@ -1,5 +1,5 @@
 export class Post{
-    id : number;
+    id : string;
     nome : string;
     legenda : string;
     qtdLikes : number;
