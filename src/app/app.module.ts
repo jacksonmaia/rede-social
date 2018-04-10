@@ -6,19 +6,21 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PostComponent } from './post/post.component';
-
+import { LinhaDoTempoComponent } from './linha-do-tempo/linha-do-tempo.component';
+import { PostService } from './post/post.service';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PostComponent
+    PostComponent,
+    LinhaDoTempoComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [PostService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

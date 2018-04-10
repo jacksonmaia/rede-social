@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   nome: String = "Jackson Maiaaa";
+  logo: String = "../../assets/img/logo.png";
+
 
   constructor() { }
 
