@@ -8,17 +8,23 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PostComponent } from './post/post.component';
 import { LinhaDoTempoComponent } from './linha-do-tempo/linha-do-tempo.component';
 import { PostService } from './post/post.service';
+import { PaginaComponent } from './pagina/pagina.component';
+import { routing } from './app.routing.module';
+import { InputPostComponent } from './post/InputPost.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PostComponent,
-    LinhaDoTempoComponent
+    LinhaDoTempoComponent,
+    PaginaComponent,
+    InputPostComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [PostService],
   bootstrap: [AppComponent],

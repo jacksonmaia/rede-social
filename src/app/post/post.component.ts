@@ -30,5 +30,6 @@ export class PostComponent implements OnInit {
   apagar(id:number): void{
     this.postservice.excluirPost(id);
   }
+  
 
 }

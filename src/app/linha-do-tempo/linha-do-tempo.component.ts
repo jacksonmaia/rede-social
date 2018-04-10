@@ -11,8 +11,9 @@ export class LinhaDoTempoComponent implements OnInit {
   constructor(private postservice:PostService ) {
 
    }
-  posts: Post[] = this.postservice.getPosts();
+  posts: Post[];
   ngOnInit() {
+    this.posts = this.postservice.getPosts();
   }
 
 }
