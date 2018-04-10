@@ -8,30 +8,30 @@ import { PostService } from "./../post/post.service";
   styleUrls: ['./linha-do-tempo.component.css']
 })
 export class LinhaDoTempoComponent implements OnInit {
+  posts: Post[];
+
   constructor(private postservice:PostService ) {
 
   }
-  posts: Post[];
+
   ngOnInit() {
-    this.getPosts();    
+    this.getAll();    
   }
 
-  getPosts(){
+  getAll(){
     this.postservice.getPosts()
     .subscribe((data) => {
       this.posts = data;
-      console.log(data);
     }, (error) => console.log(error));
   }
 
-  apagarpostagem(e){
-    this.postservice.excluirPost(e.id)
-    .subscribe((data)=>{console.log(data);
-    this.getPosts();
+  apagarpostagem(post:Post){    
+    this.postservice.excluirPost(post.id)
+    .subscribe(data => {
+      console.log(data);
+      this.getAll();
     },
-    error => console.log(error));
-    console.log(e.id)
-  
+    error => console.log(error)); 
   }
 
 }

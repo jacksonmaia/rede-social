@@ -1,2 +1,2 @@
-<app-post class="linha" (apagar) = "apagarpostagem($event)" *ngFor="let post of posts" [post]="post"></app-post>
+<app-post class="linha"  *ngFor="let post of posts" [post]="post"  (apagar)="apagarpostagem(post)"></app-post>
 

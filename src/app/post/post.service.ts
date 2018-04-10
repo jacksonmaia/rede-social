@@ -19,18 +19,21 @@ export class PostService{
     getPosts(){
         return this.http.get(this.url)
                 .map((response: Response) => {
-                    for(let p of response.json()){
-                        this.posts.push(new Post(p.id, p.nome, p.legenda, p.qtdLikes))
+                    for(let i of response.json()){
+                        this.posts.push(new Post(i.id, i.nome, i.legenda, i.qtdLikes))
                     }
                     return this.posts;
                 })
                 .catch((error: Response) => Observable.throw(error))
     }
     excluirPost(id: number){
-        return this.http.delete(this.url + '/' + id)
-        .map((response:Response) => response.json() )
+        return this.http.delete(this.url + "/" + id)
+        .map((response:Response) => response.text())
         .catch((error: Response) => Observable.throw(error));
     }
+
+
+
     adicionarPost(postagem:Post){
 //        this.posts.push(postagem);
         return this.http.post(this.url, postagem)
